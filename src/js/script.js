@@ -189,23 +189,45 @@
             price += option.price;
 
             /* END IF: if option is selected and option is not default */
+          }
 
-            /* START ELSE IF: if option is not selected and option is default */
-          }  else if (!optionSelected && option.default) {
+          /* START ELSE IF: if option is not selected and option is default */
+          else if (!optionSelected && option.default) {
 
             /* deduct price of option from price */
             price -= option.price;
 
-          }
+
           /* END ELSE IF: if option is not selected and option is default */
-        }
+          }
+
+          /* [NEW] set const productPictures to selected pictures */
+
+          const productPictures = thisProduct.imageWrapper.querySelectorAll('.' + paramId + '-' + optionId);
+          console.log(productPictures);
+
+          /* [NEW] add acitve class is option selected is true */
+
+          if (optionSelected) {
+            for (let productPicture of productPictures) {
+              productPicture.classList.add(classNames.menuProduct.imageVisible);
+            }
+          } else {
+            for (let productPicture of productPictures) {
+              productPicture.classList.remove(classNames.menuProduct.imageVisible);
+            }
+          }
+
         /* END LOOP: for each optionId in param.options */
-      }
+        }
+
       /* END LOOP: for each paramId in thisProduct.data.params */
+      }
 
       /* set the contents of thisProduct.priceElem to be the value of variable price */
       thisProduct.price = price;
       thisProduct.priceElem.innerHTML = thisProduct.price;
+
     }
   }
 
