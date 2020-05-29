@@ -468,7 +468,7 @@
         thisCart.totalNumber += product.amount;
       }
 
-      thisCart.totalPrice = thisCart.subtotalPrice + thisCart.deliveryfee;
+      thisCart.totalPrice = thisCart.subtotalPrice + thisCart.deliveryFee;
 
       console.log('total price', thisCart.totalPrice);
 
