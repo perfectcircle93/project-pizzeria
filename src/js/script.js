@@ -421,7 +421,14 @@
         console.log('thisCart.remove');
       });
 
+      thisCart.dom.form.addEventListener('submit', function(){
+        event.preventDefault();
+
+        thisCart.sendOrder();
+      });
+
     }
+
 
     getElements(element){
       const thisCart = this;
@@ -440,6 +447,8 @@
         console.log('thisCart.dom: ', thisCart.dom);
 
       }
+
+      thisCart.dom.form = thisCart.dom.wrapper.querySelector(select.cart.form);
 
     }
 
@@ -496,6 +505,36 @@
       cartProduct.dom.wrapper.remove();
 
       thisCart.update();
+
+    }
+
+    sendOrder(){
+      const thisCart = this;
+      
+      /* endpoint adress + order endpoint */
+      const url = settings.db.url + '/' + settings.db.order;
+      /* data that will be send to server */
+      const payload = {
+        address: 'test',
+        totalPrice: thisCart.totalPrice,
+      };
+
+      /* configuration of the POST */
+      const options = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      };
+
+      /* ask the server*/
+      fetch(url, options)
+        .then(function(response){
+          return response.json();
+        }) .then(function(parsedResponse){
+          console.log('parsedResponse', parsedResponse);
+        });
 
     }
 
@@ -612,7 +651,6 @@
 
           /* execute initMenu method */
           thisApp.initMenu();
-
         });
 
       console.log('thisApp.data', JSON.stringify(thisApp.data));
