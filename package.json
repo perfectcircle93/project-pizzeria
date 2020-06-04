@@ -26,10 +26,9 @@
         "watch:sassprefixer": "onchange \"src/sass/**/*.scss\" -- npm run build-dev",
         "watch:copy": "onchange -e \"**/sass/**/*\" -e \"**/.gitkeep\" \"src/**/*\" -- copyfiles -a -u 1 {{changed}} dist"
     },
-    "keywords": [],
     "author": "",
+    "keywords": [],
     "license": "ISC",
-    "dependencies": {},
     "devDependencies": {
         "autoprefixer-cli": "^1.0.0",
         "browser-sync": "^2.26.3",
@@ -43,5 +42,8 @@
         "onchange": "^5.2.0",
         "stylelint": "^9.10.1",
         "stylelint-scss": "^3.5.4"
+    },
+    "dependencies": {
+        "json-server": "^0.16.1"
     }
 }
