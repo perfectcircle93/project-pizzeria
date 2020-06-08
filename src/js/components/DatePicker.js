@@ -1,6 +1,6 @@
-import BaseWidget from './BaseWidget.js';
 import { utils } from '../utils.js';
 import { select, settings } from '../settings.js';
+import BaseWidget from './BaseWidget.js';
 
 class DatePicker extends BaseWidget {
   constructor(wrapper){
@@ -20,7 +20,7 @@ class DatePicker extends BaseWidget {
     thisWidget.maxDate = utils.addDays(thisWidget.minDate, settings.datePicker.maxDaysInFuture);
 
     const dateOptions = {
-      defaultDate: thisWidget.minDate,
+      defaultDate: 'today',
       minDate: thisWidget.minDate,
       maxDate: thisWidget.maxDate,
       disable: [
@@ -38,11 +38,12 @@ class DatePicker extends BaseWidget {
       },
     };
 
+    // eslint-disable-next-line no-undef
     flatpickr(thisWidget.dom.input, dateOptions);
 
   }
 
-  parseVale(value) {
+  parseValue(value) {
     return value;
   }
 
