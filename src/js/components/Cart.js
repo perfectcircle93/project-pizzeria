@@ -36,7 +36,7 @@ class Cart {
 
     thisCart.dom.productList.addEventListener('remove', function(){
       thisCart.remove(event.detail.cartProduct);
-      console.log('thisCart.remove');
+      //console.log('thisCart.remove');
     });
 
     thisCart.dom.form.addEventListener('submit', function(){
@@ -61,8 +61,8 @@ class Cart {
 
     for(let key of thisCart.renderTotalsKeys){
       thisCart.dom[key] = thisCart.dom.wrapper.querySelectorAll(select.cart[key]);
-      console.log('key: ', key);
-      console.log('thisCart.dom: ', thisCart.dom);
+      //console.log('key: ', key);
+      //console.log('thisCart.dom: ', thisCart.dom);
 
     }
 
@@ -109,7 +109,7 @@ class Cart {
 
     thisCart.totalPrice = thisCart.subtotalPrice + thisCart.deliveryFee;
 
-    console.log('total price', thisCart.totalPrice);
+    //console.log('total price', thisCart.totalPrice);
 
     for(let key of thisCart.renderTotalsKeys){
       for(let elem of thisCart.dom[key]){
