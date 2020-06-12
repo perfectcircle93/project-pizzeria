@@ -151,7 +151,7 @@ const app = {
 
     function changeTitle(){
       const title = document.querySelector('.review-title');
-      const pean = document.querySelector('.reviev-content');
+      const content = document.querySelector('.reviev-content');
       const author = document.querySelector('.review-author');
 
       for(let dot of dots) {
@@ -161,7 +161,7 @@ const app = {
           dot.classList.remove('active');
         }
         title.innerHTML = review[i].title;
-        pean.innerHTML = review[i].content;
+        content.innerHTML = review[i].content;
         author.innerHTML = review[i].author;
       }
 
