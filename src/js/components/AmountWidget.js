@@ -7,6 +7,10 @@ class AmountWidget extends BaseWidget {
     super(element, settings.amountWidget.defaultValue); 
 
     const thisWidget = this;
+    thisWidget.limit = {
+      min: settings.amountWidget.defaultMin,
+      max: settings.amountWidget.defaultMax
+    };
 
     thisWidget.getElements(element);
     //thisWidget.value = settings.amountWidget.defaultValue;
@@ -15,6 +19,24 @@ class AmountWidget extends BaseWidget {
 
     //console.log('AmountWidget:', thisWidget);
     //console.log('constructor arguments:', element);
+  }
+
+  setLimit(min, max) {
+    const thisWidget = this;
+    thisWidget.limit = {
+      min: min,
+      max: max
+    };
+    this.setValue(thisWidget.limit.min);
+  }
+
+  resetLimit() {
+    const thisWidget = this;
+    thisWidget.limit = {
+      min: settings.amountWidget.defaultMin,
+      max: settings.amountWidget.defaultMax
+    };
+    this.setValue(thisWidget.limit.min);
   }
 
   getElements(){
@@ -28,8 +50,8 @@ class AmountWidget extends BaseWidget {
 
   isValid(value){
     return !isNaN(value)
-      && value >= settings.amountWidget.defaultMin 
-      && value <= settings.amountWidget.defaultMax;
+      && value >= this.limit.min
+      && value <= this.limit.max;
   }
 
   renderValue(){

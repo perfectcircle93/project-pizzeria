@@ -11,7 +11,6 @@ class Booking {
     thisBooking.render(element);
     thisBooking.initWidgets();
     thisBooking.getData();
-    thisBooking.selectTables();
   }
 
   getData(){
@@ -129,6 +128,8 @@ class Booking {
     thisBooking.date = thisBooking.datePicker.value;
     thisBooking.hour = utils.hourToNumber(thisBooking.hourPicker.value);
 
+    thisBooking.peopleAmount.resetLimit();
+
     let allAvailable = false;
 
     /* checking the availability of the tables */
@@ -200,7 +201,11 @@ class Booking {
     thisBooking.datePicker = new DatePicker(thisBooking.dom.datePicker);
     thisBooking.hourPicker = new HourPicker(thisBooking.dom.hourPicker);
 
-    thisBooking.dom.wrapper.addEventListener('updated', function(){
+    thisBooking.dom.hourPicker.addEventListener('updated', function(){
+      thisBooking.updateDOM();
+    });
+
+    thisBooking.dom.datePicker.addEventListener('updated', function(){
       thisBooking.updateDOM();
     });
 
@@ -210,17 +215,6 @@ class Booking {
     });
 
     thisBooking.checkTables();
-  }
-
-  selectTables() {
-    const thisBooking = this;
-
-    for(let table of thisBooking.dom.tables){
-      table.addEventListener('click', function(){
-        table.classList.add(classNames.booking.tableBooked);
-      });
-    }
-
   }
 
   checkTables() {
@@ -236,6 +230,9 @@ class Booking {
           table.classList.add(classNames.booking.tableBooked);
           thisBooking.clickedElement = event.target;
           thisBooking.tableNumber = thisBooking.clickedElement.getAttribute(settings.booking.tableIdAttribute);
+
+          const limits = settings.tables[thisBooking.tableNumber];
+          thisBooking.peopleAmount.setLimit(limits.min, limits.max);
         }
       });
     }
@@ -250,7 +247,7 @@ class Booking {
     const payload = {
       date: thisBooking.datePicker.value,
       hour: thisBooking.hourPicker.value,
-      table: thisBooking.tableNumber,
+      table: parseInt(thisBooking.tableNumber),
       duration: thisBooking.hoursAmount.value,
       ppl: thisBooking.peopleAmount.value,
       phone: thisBooking.dom.phone.value,
@@ -280,7 +277,6 @@ class Booking {
         thisBooking.getData();
       });
 
-    thisBooking.getData();
   }
 
 
