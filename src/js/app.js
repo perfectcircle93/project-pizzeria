@@ -125,6 +125,59 @@ const app = {
 
   },
 
+  initCarousel() {
+    
+    const review = [];
+
+    review[0] = {
+      title: 'DELICIOUS FOOD!',
+      content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam egestas vivera tortor, eu ullamcorper dui imerdied nec. Nunc sed dolor at elit labortis sodales.',
+      author: 'Angelina J.',
+    };
+    review[1] = {
+      title: 'FAST DELIVERY!',
+      content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam egestas vivera tortor, eu ullamcorper dui imerdied nec. Nunc sed dolor at elit labortis sodales.',
+      author: 'Brad P.',
+    };
+    review[2] = {
+      title: 'NICE JOB!',
+      content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam egestas vivera tortor, eu ullamcorper dui imerdied nec. Nunc sed dolor at elit labortis sodales.',
+      author: 'Clark K.',
+    };
+
+    let i = 0;
+
+    const dots = document.querySelectorAll('.carousel-dots i');
+
+    function changeTitle(){
+      const title = document.querySelector('.review-title');
+      const pean = document.querySelector('.reviev-content');
+      const author = document.querySelector('.review-author');
+
+      for(let dot of dots) {
+        if(dot.id == i + 1) {
+          dot.classList.add('active');
+        } else {
+          dot.classList.remove('active');
+        }
+        title.innerHTML = review[i].title;
+        pean.innerHTML = review[i].content;
+        author.innerHTML = review[i].author;
+      }
+
+      if(i < review.length -1) {
+        i++;
+      } else {
+        i=0;
+      }
+    }
+    changeTitle();
+
+    setInterval(() => {
+      changeTitle();
+    }, 3000);
+  },
+
   init: function(){
     const thisApp = this;
     //console.log('*** App starting ***');
@@ -138,6 +191,7 @@ const app = {
     //thisApp.initMenu();
     thisApp.initCart();
     thisApp.initBooking();
+    thisApp.initCarousel();
   },
 
 
