@@ -132,17 +132,17 @@ const app = {
     review[0] = {
       title: 'DELICIOUS FOOD!',
       content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam egestas vivera tortor, eu ullamcorper dui imerdied nec. Nunc sed dolor at elit labortis sodales.',
-      author: 'Angelina J.',
+      author: '- Angelina J.',
     };
     review[1] = {
       title: 'FAST DELIVERY!',
       content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam egestas vivera tortor, eu ullamcorper dui imerdied nec. Nunc sed dolor at elit labortis sodales.',
-      author: 'Brad P.',
+      author: '- Brad P.',
     };
     review[2] = {
       title: 'NICE JOB!',
       content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam egestas vivera tortor, eu ullamcorper dui imerdied nec. Nunc sed dolor at elit labortis sodales.',
-      author: 'Clark K.',
+      author: '- Clark K.',
     };
 
     let i = 0;
