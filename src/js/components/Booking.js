@@ -99,7 +99,6 @@ class Booking {
     //console.log('thisBooking.booked', thisBooking.booked);
 
     thisBooking.updateDOM();
-    thisBooking.rangeSlider();
     
   }
 
