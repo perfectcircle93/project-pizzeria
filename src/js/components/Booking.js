@@ -284,42 +284,43 @@ class Booking {
   rangeSlider(){
     const thisBooking = this;
     const bookedRange = thisBooking.booked[thisBooking.date];
-
-    const colors = [];
-
-
     const rangeSlider  = thisBooking.dom.wrapper.querySelector(select.widgets.hourPicker.rangeSlider);
 
+    const hours = [];
+    const colors = [];
 
-    for (let bookedTime in bookedRange) {
+    /* 12-05-2020 {
+      12: [1]
+      12.5: []
+      13: [1, 2]
+    }*/
 
-      const min = 12;
-      const max = 24;
-      const step = 1;
-      const startValue = (((bookedTime - min) * 100) / (max - min)); 
-
-      const endValue = (((bookedTime - min) + step ) * 100) / (max - min);  
-
-
-      if (bookedTime < max) {
-
-        if (bookedRange[bookedTime].length <=  1 ) {
-          console.log(bookedTime);
-          colors.push ('/*' + bookedTime + '*/green ' + startValue + '%, green ' + endValue + '%');
-          console.log('bookedTime1', bookedTime);
-        } else if (bookedRange[bookedTime].length === 2) {
-          colors.push ('/*' + bookedTime + '*/orange ' + startValue + '%, orange ' + endValue + '%');
-          console.log('bookedTime2', bookedTime);
-        } else if (bookedRange[bookedTime].length === 3) {
-          colors.push ('/*' + bookedTime + '*/red ' + startValue + '%, red ' + endValue + '%'); 
-          console.log('bookedTime3', bookedTime);
-        }
-      }
+    for(let hour = settings.hours.open; hour <= settings.hours.close; hour=hour+0.5) {
+      hours.push(hour === 24 ? 0 : hour);
     }
 
-    colors.sort();
-    const pushedColors = colors.join();
-    rangeSlider.style.background = 'linear-gradient(to right, ' + pushedColors + ')';
+    const acc = 100 / hours.length; //4
+    let startValue = 0; //8
+    let endValue = acc; //12
+
+    for(let hour of hours) {
+      if(!bookedRange[hour] || bookedRange[hour].length === 0 || bookedRange[hour].length === 1) {
+        colors.push(`green ${startValue}% ${endValue}%`);
+      }
+      else if (bookedRange[hour].length === 2) {
+        colors.push(`orange ${startValue}% ${endValue}%`);
+      } else {
+        colors.push(`red ${startValue}% ${endValue}%`);
+      }
+
+      startValue += acc;
+      endValue += acc;
+    }
+
+    const pushedColors = colors.join(', '); // 'red 20%, orange 20% 40%, yellow 40% 60%, green 60% 80%, blue 80%'; //
+    const test = 'linear-gradient(to right, ' + pushedColors + ')';
+    rangeSlider.style.background = test;
+    console.log(rangeSlider);
 
   }
 
