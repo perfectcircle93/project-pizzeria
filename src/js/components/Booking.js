@@ -172,10 +172,9 @@ class Booking {
 
     thisBooking.dom = {};
     thisBooking.dom.wrapper = element;
-    thisBooking.dom.wrapper = utils.createDOMFromHTML(generatedHTML);
+    thisBooking.element = utils.createDOMFromHTML(generatedHTML);
 
-    const bookingWrapper = document.querySelector(select.containerOf.booking);
-    bookingWrapper.appendChild(thisBooking.dom.wrapper);
+    thisBooking.dom.wrapper.appendChild(thisBooking.element);
     
     thisBooking.dom.peopleAmount = thisBooking.dom.wrapper.querySelector(select.booking.peopleAmount);
     thisBooking.dom.hoursAmount = thisBooking.dom.wrapper.querySelector(select.booking.hoursAmount);

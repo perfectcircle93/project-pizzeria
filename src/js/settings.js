@@ -10,7 +10,8 @@ export const select = {
     menu: '#product-list',
     cart: '#cart',
     pages: '#pages',
-    booking: '.booking-wrapper',
+    booking: '#booking .booking-wrapper',
+    bookingEdit: '#booking-edit .booking-wrapper'
   },
   all: {
     menuProducts: '#product-list > .product',

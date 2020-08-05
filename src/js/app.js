@@ -2,6 +2,7 @@ import {settings, select, classNames, templates} from './settings.js';
 import Product from './components/Product.js';
 import Cart from './components/Cart.js';
 import Booking from './components/Booking.js';
+import BookingEdit from './components/BookingEdit.js';
 
 const app = {
   initPages: function(){ //run when refresh the page
@@ -13,18 +14,22 @@ const app = {
     const idFromHash = window.location.hash.replace('#/', '');
     
 
-    let pageMatchingHash = thisApp.pages[0].id;
+    let pageToActivate='';
 
     for(let page of thisApp.pages){
       if(page.id == idFromHash){
-        pageMatchingHash = page.id;
+        pageToActivate = page.id;
         break;
       }
     }
+
+    if(!pageToActivate && idFromHash.split('/')[0] === 'booking') pageToActivate = 'booking-edit';
+    if(!pageToActivate) pageToActivate = thisApp.pages[0].id;
+  
     //console.log('pageMatchingHash', pageMatchingHash);
     //thisApp.activatePage(thisApp.pages[0].id); // refresh settings
     // thisApp.activatePage(idFromHash); // the same
-    thisApp.activatePage(pageMatchingHash); //the same 3
+    thisApp.activatePage(pageToActivate); //the same 3
 
 
     for(let link of thisApp.navLinks){
@@ -122,6 +127,8 @@ const app = {
 
     const bookingElem = document.querySelector(select.containerOf.booking);
     thisApp.booking = new Booking(bookingElem);
+    const bookingEditElem = document.querySelector(select.containerOf.bookingEdit);
+    thisApp.bookingEdit = new BookingEdit(bookingEditElem);
 
   },
 

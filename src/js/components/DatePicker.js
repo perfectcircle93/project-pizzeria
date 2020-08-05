@@ -44,7 +44,7 @@ class DatePicker extends BaseWidget {
     };
 
     // eslint-disable-next-line no-undef
-    flatpickr(thisWidget.dom.input, dateOptions);
+    thisWidget.plugin = flatpickr(thisWidget.dom.input, dateOptions);
 
   }
 
