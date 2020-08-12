@@ -289,12 +289,14 @@
   "booking": [
     {
       "id": 1,
-      "date": "2020-06-16",
+      "date": "2020-08-14",
       "hour": "16:00",
-      "table": 1,
+      "table": 2,
       "duration": 3,
       "ppl": 4,
-      "starters": ["water"]
+      "starters": ["water"],
+      "email": "Test",
+      "phone": 123455677
     }
   ]
 }

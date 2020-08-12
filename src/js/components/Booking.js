@@ -227,7 +227,9 @@ class Booking {
         if(table.classList.contains(classNames.booking.tableBooked)) {
           return window.alert('PLEASE TRY AGAIN');
         } else {
-          table.classList.add(classNames.booking.tableBooked);
+          const activeTable = document.querySelector('.' + classNames.booking.tablePicked);
+          if(activeTable) activeTable.classList.remove(classNames.booking.tablePicked);
+          table.classList.add(classNames.booking.tablePicked);
           thisBooking.clickedElement = event.target;
           thisBooking.tableNumber = thisBooking.clickedElement.getAttribute(settings.booking.tableIdAttribute);
 
